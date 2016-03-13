@@ -43,13 +43,17 @@ var Client = (function(window) {
     '40': () => {downCommand()}
   }
 
-  var leftCommand, upCommand, rightCommand, downCommand
+  var leftCommand, upCommand, rightCommand, downCommand, breakCommand
 
   function pubBootstrap () {
     window.onkeydown = function (event) {
       if (event.keyCode >= 37 && event.keyCode <= 40) {
         commands[event.keyCode.toString()]()
       }
+    }
+
+    window.onkeyup = function (event) {
+      breakCommand()
     }
   }
 
@@ -87,4 +91,9 @@ window.onload = function () {
   Client.on('downCommand', () => {
     Board.sendComm('toback')
   })
+
+  Client.on('breakCommand', () => {
+    Board.sendComm('break')
+  })
+
 }
