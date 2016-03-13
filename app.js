@@ -15,8 +15,6 @@ pins[8] = OUTPUT  // Dir2 motor A
 pins[12] = OUTPUT // Dir1 motor B
 pins[13] = OUTPUT // Dir1 motor B
 
-
-
 Server.on('toleft', () => {
   action = (that) => {
     that.analogWrite(pins[5], 255)
@@ -75,7 +73,7 @@ Server.on('break', () => {
 board.on("ready", function(){
   var val = 0;
   for (var i in pins) {
-    if (object.hasOwnProperty(i)) {
+    if (pins.hasOwnProperty(i)) {
       this.pinMode(i, pins[i])
     }
   }
